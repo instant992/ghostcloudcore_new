@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "cores": {
+    "mihomo": {
+      "version": "1",
+      "files": {
+        "arm64-v8a": { "path": "cores/mihomo-1/arm64-v8a/libclash.so", "size": 58301512, "sha256": "9fb712fd4bded4cbd6ede7e37170a19d5cd7d043ad2fa994365f0fb130016e08" },
+        "armeabi-v7a": { "path": "cores/mihomo-1/armeabi-v7a/libclash.so", "size": 54484940, "sha256": "42ac952b4bbe76437a2e9869af3df0f746e7f29aae8eea7bf78ad22b53edfb5d" },
+        "x86_64": { "path": "cores/mihomo-1/x86_64/libclash.so", "size": 62896552, "sha256": "114584a4f11d59290aa7811f992056c0af3c0894f3b18d1ab52756f4065e0950" }
+      }
+    },
+    "sing-box": {
+      "version": "1.13.19",
+      "files": {
+        "arm64-v8a": { "path": "cores/sing-box-1.13.19/arm64-v8a/libsingbox.so", "size": 58641280, "sha256": "8279e9a05a5ee4e0700989a70517a86da29490113c85d2f84316a837f9b56b02" },
+        "armeabi-v7a": { "path": "cores/sing-box-1.13.19/armeabi-v7a/libsingbox.so", "size": 54647336, "sha256": "0846363a461ecb152ab60775dfa7c28fc1b0c0674ba4216c0d2e67cf4b46a007" },
+        "x86_64": { "path": "cores/sing-box-1.13.19/x86_64/libsingbox.so", "size": 62254176, "sha256": "65ef41eba4c81e4bb4c60b26d6dff893120f875041277067c02ae6e534ab1e70" }
+      }
+    }
+  }
+}
