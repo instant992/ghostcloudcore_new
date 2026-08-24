@@ -10,11 +10,11 @@
       }
     },
     "sing-box": {
-      "version": "1.13.19",
+      "version": "2",
       "files": {
-        "arm64-v8a": { "path": "cores/sing-box-1.13.19/arm64-v8a/libsingbox.so", "size": 58641280, "sha256": "8279e9a05a5ee4e0700989a70517a86da29490113c85d2f84316a837f9b56b02" },
-        "armeabi-v7a": { "path": "cores/sing-box-1.13.19/armeabi-v7a/libsingbox.so", "size": 54647336, "sha256": "0846363a461ecb152ab60775dfa7c28fc1b0c0674ba4216c0d2e67cf4b46a007" },
-        "x86_64": { "path": "cores/sing-box-1.13.19/x86_64/libsingbox.so", "size": 62254176, "sha256": "65ef41eba4c81e4bb4c60b26d6dff893120f875041277067c02ae6e534ab1e70" }
+        "arm64-v8a": { "path": "cores/sing-box-2/arm64-v8a/libsingbox.so", "size": 35185576, "sha256": "4e2c79b5b1d721ba957afd9815868f95439e7e1ea989cfded49de09f234ff286" },
+        "armeabi-v7a": { "path": "cores/sing-box-2/armeabi-v7a/libsingbox.so", "size": 33308520, "sha256": "e775d76a702a90e0d0285d07bcb388d09d9fab0b199afbff793aed7f07509a65" },
+        "x86_64": { "path": "cores/sing-box-2/x86_64/libsingbox.so", "size": 37628544, "sha256": "100ce32a90b74f98156ad3406ee099ff6359188c1042efa4917c420b385d40e3" }
       }
     }
   }
