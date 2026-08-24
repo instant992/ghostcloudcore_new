@@ -2,11 +2,11 @@
   "schema": 1,
   "cores": {
     "mihomo": {
-      "version": "1",
+      "version": "2",
       "files": {
-        "arm64-v8a": { "path": "cores/mihomo-1/arm64-v8a/libclash.so", "size": 58301512, "sha256": "9fb712fd4bded4cbd6ede7e37170a19d5cd7d043ad2fa994365f0fb130016e08" },
-        "armeabi-v7a": { "path": "cores/mihomo-1/armeabi-v7a/libclash.so", "size": 54484940, "sha256": "42ac952b4bbe76437a2e9869af3df0f746e7f29aae8eea7bf78ad22b53edfb5d" },
-        "x86_64": { "path": "cores/mihomo-1/x86_64/libclash.so", "size": 62896552, "sha256": "114584a4f11d59290aa7811f992056c0af3c0894f3b18d1ab52756f4065e0950" }
+        "arm64-v8a": { "path": "cores/mihomo-2/arm64-v8a/libclash.so", "size": 53232248, "sha256": "1b2525cbe98835f988a1d12720662398d2e670136a449e72ce7af70cc6893609" },
+        "armeabi-v7a": { "path": "cores/mihomo-2/armeabi-v7a/libclash.so", "size": 50100396, "sha256": "8d4d9a0b01a208faaf4544c41967297461728723b8185b1986a2e49108eb6fd9" },
+        "x86_64": { "path": "cores/mihomo-2/x86_64/libclash.so", "size": 57588760, "sha256": "2c43e6ee318f5e5b0ae7e253ff954764f3c58fbfceadb5c05424f73d529867d8" }
       }
     },
     "sing-box": {
