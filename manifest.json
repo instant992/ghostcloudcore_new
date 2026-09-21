@@ -16,6 +16,15 @@
         "armeabi-v7a": { "path": "cores/sing-box-2/armeabi-v7a/libsingbox.so", "size": 33308520, "sha256": "e775d76a702a90e0d0285d07bcb388d09d9fab0b199afbff793aed7f07509a65" },
         "x86_64": { "path": "cores/sing-box-2/x86_64/libsingbox.so", "size": 37628544, "sha256": "100ce32a90b74f98156ad3406ee099ff6359188c1042efa4917c420b385d40e3" }
       }
+    },
+    "uwuray": {
+      "version": "1",
+      "files": {
+        "arm64-v8a": { "path": "cores/uwuray-1/arm64-v8a/libuwuray.so", "size": 35512232, "sha256": "2935fd14447311507cf36338c20a316888f6ca7a2111aa0fc1fcefe88b46ed81" },
+        "armeabi-v7a": { "path": "cores/uwuray-1/armeabi-v7a/libuwuray.so", "size": 33888592, "sha256": "c205b43ee8d6b70af450e363054397d2c2759c87352e4e6c75cfa1d398a6653f" },
+        "x86_64": { "path": "cores/uwuray-1/x86_64/libuwuray.so", "size": 37804136, "sha256": "a06c60c05b4803e0c81fa8a6d4a00433a16edebb8a1dde454884e2baab08792d" },
+        "x86": { "path": "cores/uwuray-1/x86/libuwuray.so", "size": 34312536, "sha256": "50b096cb48e9c7e03834664a69ba3a744853a980449c38049a92c6d086747524" }
+      }
     }
   }
 }
