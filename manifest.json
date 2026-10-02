@@ -4,26 +4,71 @@
     "mihomo": {
       "version": "2",
       "files": {
-        "arm64-v8a": { "path": "cores/mihomo-2/arm64-v8a/libclash.so", "size": 53232248, "sha256": "1b2525cbe98835f988a1d12720662398d2e670136a449e72ce7af70cc6893609" },
-        "armeabi-v7a": { "path": "cores/mihomo-2/armeabi-v7a/libclash.so", "size": 50100396, "sha256": "8d4d9a0b01a208faaf4544c41967297461728723b8185b1986a2e49108eb6fd9" },
-        "x86_64": { "path": "cores/mihomo-2/x86_64/libclash.so", "size": 57588760, "sha256": "2c43e6ee318f5e5b0ae7e253ff954764f3c58fbfceadb5c05424f73d529867d8" }
+        "arm64-v8a": {
+          "path": "cores/mihomo-2/arm64-v8a/libclash.so",
+          "size": 53232248,
+          "sha256": "1b2525cbe98835f988a1d12720662398d2e670136a449e72ce7af70cc6893609"
+        },
+        "armeabi-v7a": {
+          "path": "cores/mihomo-2/armeabi-v7a/libclash.so",
+          "size": 50100396,
+          "sha256": "8d4d9a0b01a208faaf4544c41967297461728723b8185b1986a2e49108eb6fd9"
+        },
+        "x86_64": {
+          "path": "cores/mihomo-2/x86_64/libclash.so",
+          "size": 57588760,
+          "sha256": "2c43e6ee318f5e5b0ae7e253ff954764f3c58fbfceadb5c05424f73d529867d8"
+        }
       }
     },
     "sing-box": {
-      "version": "2",
+      "version": "3",
       "files": {
-        "arm64-v8a": { "path": "cores/sing-box-2/arm64-v8a/libsingbox.so", "size": 35185576, "sha256": "4e2c79b5b1d721ba957afd9815868f95439e7e1ea989cfded49de09f234ff286" },
-        "armeabi-v7a": { "path": "cores/sing-box-2/armeabi-v7a/libsingbox.so", "size": 33308520, "sha256": "e775d76a702a90e0d0285d07bcb388d09d9fab0b199afbff793aed7f07509a65" },
-        "x86_64": { "path": "cores/sing-box-2/x86_64/libsingbox.so", "size": 37628544, "sha256": "100ce32a90b74f98156ad3406ee099ff6359188c1042efa4917c420b385d40e3" }
+        "arm64-v8a": {
+          "path": "cores/sing-box-2/arm64-v8a/libsingbox.so",
+          "size": 28855696,
+          "sha256": "56cfe9a22fadd4029c24b5db5b45a10a93bd61688aae7094b365b4e37fd34958"
+        },
+        "armeabi-v7a": {
+          "path": "cores/sing-box-2/armeabi-v7a/libsingbox.so",
+          "size": 27316004,
+          "sha256": "4fa931fc252553577cd31c16d3427cea9af64b2a198c3a12a99098414921789f"
+        },
+        "x86_64": {
+          "path": "cores/sing-box-2/x86_64/libsingbox.so",
+          "size": 31023024,
+          "sha256": "6a8924603fd73aea9da8db68c8d8a9300316f6f640e5bad57eb49a006958a3dc"
+        },
+        "x86": {
+          "path": "cores/sing-box-2/x86/libsingbox.so",
+          "size": 27846700,
+          "sha256": "1f93e72b2f2c187fa16dba3fba2bb4338a61c2ea449eb83d591ddea79b2c490e"
+        }
       }
     },
     "uwuray": {
       "version": "1",
       "files": {
-        "arm64-v8a": { "path": "cores/uwuray-1/arm64-v8a/libuwuray.so", "size": 35512232, "sha256": "2935fd14447311507cf36338c20a316888f6ca7a2111aa0fc1fcefe88b46ed81" },
-        "armeabi-v7a": { "path": "cores/uwuray-1/armeabi-v7a/libuwuray.so", "size": 33888592, "sha256": "c205b43ee8d6b70af450e363054397d2c2759c87352e4e6c75cfa1d398a6653f" },
-        "x86_64": { "path": "cores/uwuray-1/x86_64/libuwuray.so", "size": 37804136, "sha256": "a06c60c05b4803e0c81fa8a6d4a00433a16edebb8a1dde454884e2baab08792d" },
-        "x86": { "path": "cores/uwuray-1/x86/libuwuray.so", "size": 34312536, "sha256": "50b096cb48e9c7e03834664a69ba3a744853a980449c38049a92c6d086747524" }
+        "arm64-v8a": {
+          "path": "cores/uwuray-1/arm64-v8a/libuwuray.so",
+          "size": 35512232,
+          "sha256": "2935fd14447311507cf36338c20a316888f6ca7a2111aa0fc1fcefe88b46ed81"
+        },
+        "armeabi-v7a": {
+          "path": "cores/uwuray-1/armeabi-v7a/libuwuray.so",
+          "size": 33888592,
+          "sha256": "c205b43ee8d6b70af450e363054397d2c2759c87352e4e6c75cfa1d398a6653f"
+        },
+        "x86_64": {
+          "path": "cores/uwuray-1/x86_64/libuwuray.so",
+          "size": 37804136,
+          "sha256": "a06c60c05b4803e0c81fa8a6d4a00433a16edebb8a1dde454884e2baab08792d"
+        },
+        "x86": {
+          "path": "cores/uwuray-1/x86/libuwuray.so",
+          "size": 34312536,
+          "sha256": "50b096cb48e9c7e03834664a69ba3a744853a980449c38049a92c6d086747524"
+        }
       }
     }
   }
