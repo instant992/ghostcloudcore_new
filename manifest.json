@@ -1,6 +1,35 @@
 {
   "schema": 1,
   "cores": {
+    "xray-last": {
+  "version": "26.10.10",
+  "upstream": "XTLS/Xray-core",
+  "tag": "v26.10.10",
+  "commit": "701af60772cda123492f86e383e1fdba066614a9",
+  "prerelease": true,
+  "files": {
+    "arm64-v8a": {
+      "path": "cores/xray-last-v26.10.10/arm64-v8a/libxraylast.so",
+      "sha256": "fdc4f1d08fe43e89f80e949ac2a7ede4c80c8177be4f8aecf75db300bb3c6214",
+      "size": 37189144
+    },
+    "armeabi-v7a": {
+      "path": "cores/xray-last-v26.10.10/armeabi-v7a/libxraylast.so",
+      "sha256": "4b136f281782e0241bf14a3506a7d9a1166734a11e0740d3b227159fb7c3a521",
+      "size": 36047160
+    },
+    "x86": {
+      "path": "cores/xray-last-v26.10.10/x86/libxraylast.so",
+      "sha256": "bf7757683cd0f762bc12dc277eca137e839bbf165fc14fcf671e0538f960c0c0",
+      "size": 36065184
+    },
+    "x86_64": {
+      "path": "cores/xray-last-v26.10.10/x86_64/libxraylast.so",
+      "sha256": "df502341e1a060ede5695c8ffe88633124a884a35f12093cef5313e1add20b55",
+      "size": 39680696
+    }
+  }
+},
     "mihomo": {
       "version": "2",
       "files": {
