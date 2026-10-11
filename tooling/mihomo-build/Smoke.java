@@ -17,12 +17,15 @@ public class Smoke {
   static native boolean fdOpen(int fd);
   static native void closeFd(int fd);
   static void require(boolean value, String message) { if (!value) throw new AssertionError(message); }
+  static void stage(String name) { System.out.println("GC_SMOKE_STAGE=" + name + " pid=" + android.os.Process.myPid() + " uptime_ms=" + android.os.SystemClock.elapsedRealtime()); System.out.flush(); }
   public static void main(String[] args) throws Exception {
+    stage("load");
     System.load(args[0]);
     GcCore core = new GcCore();
     require(core.gcInit(args[1]).isEmpty(), "init");
     System.out.println("VERSION=" + core.gcVersion());
     require(core.gcVersion().contains("1.19.32"), "upstream version");
+    stage("bad-config-begin");
     ParcelFileDescriptor[] pipe = ParcelFileDescriptor.createPipe();
     int before = new File("/proc/self/fd").list().length;
     for (int i = 0; i < 30; i++) {
@@ -36,8 +39,10 @@ public class Smoke {
     InputStream reader = new ParcelFileDescriptor.AutoCloseInputStream(pipe[0]);
     require(reader.read() == 42, "Java original descriptor closed");
     reader.close(); writer.close();
+    stage("bad-config-fd-pass");
     String config = "{\"mode\":\"rule\",\"socks-port\":19483,\"bind-address\":\"127.0.0.1\",\"rules\":[\"MATCH,DIRECT\"],\"dns\":{\"enable\":false},\"tun\":{\"enable\":false}}";
     for (int i = 0; i < 3; i++) {
+      stage("proxy-start-" + i);
       require(core.gcStart(config, -1).isEmpty(), "start");
       require(core.gcStart(config, -1).isEmpty(), "replace config");
       ServerSocket server = new ServerSocket(19484, 1, InetAddress.getByName("127.0.0.1"));
@@ -62,15 +67,21 @@ public class Smoke {
       responder.join(5000); server.close();
       core.gcStop(); core.gcStop();
     }
+    stage("proxy-pass");
     if (args.length > 2) {
+      stage("tun-open");
       System.load(args[2]);
       int tun = openTun(); require(tun >= 0, "real TUN creation");
       String tunConfig = "{\"mode\":\"rule\",\"rules\":[\"MATCH,DIRECT\"],\"dns\":{\"enable\":true,\"enhanced-mode\":\"fake-ip\",\"nameserver\":[\"8.8.8.8\"]},\"tun\":{\"enable\":true,\"stack\":\"gvisor\",\"auto-route\":false,\"auto-detect-interface\":false,\"inet4-address\":[\"26.26.26.1/30\"],\"dns-hijack\":[\"any:53\"]}}";
       int beforeTun = new File("/proc/self/fd").list().length;
       for (int i=0;i<10;i++) {
+        stage("tun-start-" + i);
         String error = core.gcStart(tunConfig, tun);
+        stage("tun-start-return-" + i + " error=" + error);
         require(error.isEmpty(), "TUN start: " + error);
+        stage("tun-stop-" + i);
         core.gcStop(); require(fdOpen(tun), "borrowed TUN fd closed");
+        stage("tun-fd-pass-" + i);
       }
       require(new File("/proc/self/fd").list().length <= beforeTun + 3, "TUN fd leak");
       closeFd(tun);
