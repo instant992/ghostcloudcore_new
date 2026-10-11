@@ -12,6 +12,11 @@ spec.loader.exec_module(pipeline)
 
 
 class SafetyTests(unittest.TestCase):
+    def test_sdk_setup_excludes_removed_legacy_tools(self):
+        workflow = Path(__file__).with_name('upstream-jni.yml').read_text()
+        setup = workflow.split('      - uses: android-actions/setup-android@', 1)[1].split('      - name:', 1)[0]
+        self.assertIn('packages: platform-tools', setup)
+
     def test_patch_fails_closed(self):
         self.assertIn('unix.Dup', pipeline.patch_tun(pipeline.NEEDLE))
         for source in ['', pipeline.NEEDLE * 2, pipeline.REPLACEMENT]:

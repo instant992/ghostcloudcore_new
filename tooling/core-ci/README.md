@@ -22,13 +22,13 @@ Keep these copies synchronized when changing wrappers or tests.
   runs. Push is fast-forward only; commit-pinned remote manifest and every binary
   downloaded and verified after push. No GitHub Releases/assets are replaced.
 
-## Manual approval is mandatory (initial setup BLOCKED)
+## Manual approval is mandatory
 
-Stored Git credentials support authenticated API reads without exposing secrets.
-Environment setup was blocked by an approval timeout; publication fails closed.
-An administrator must create `core-production` in the **distribution repository**,
-with `instant992` (user ID `59600183`) as required reviewer, admin bypass disabled,
-and allow only `main`. Setup with an authenticated `gh` (no token in this file):
+`core-production` is configured in the **distribution repository**, with
+`instant992` (user ID `59600183`) as required reviewer, admin bypass disabled,
+and only the `main` branch allowed. Configuration was verified by authenticated
+API readback. Publication still fails closed if protection becomes unavailable.
+To recreate it with an authenticated `gh` (no token in this file):
 
 ```sh
 gh api --method PUT repos/instant992/ghostcloudcore_new/environments/core-production \
