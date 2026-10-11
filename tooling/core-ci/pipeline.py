@@ -139,7 +139,7 @@ def build(core, metadata, wrappers, work, output, ndk, go):
     host_env = dict(os.environ, CGO_ENABLED='0' if os.name == 'nt' else '1')
     # Xray JNI contains Android/POSIX FD calls; host tests import the same
     # upstream runtime without compiling Android JNI glue on the host.
-    targets = ['main.go', 'main_test.go'] if core == 'xray-last' else ['./...']
+    targets = ['main.go', 'main_test.go']
     print(run(go, 'test', '-v', '-count=1', '-timeout=180s', '-ldflags=-checklinkname=0', *targets, cwd=wrapper, env=host_env), flush=True)
     prebuilt = ndk / 'toolchains/llvm/prebuilt' / ('windows-x86_64' if os.name == 'nt' else 'linux-x86_64') / 'bin'
     suffix = '.exe' if os.name == 'nt' else ''
