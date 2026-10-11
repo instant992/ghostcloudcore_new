@@ -1,0 +1,170 @@
+name: Upstream Android JNI
+on:
+  push:
+    branches: [main]
+    paths: ['tooling/**', '.github/workflows/upstream-jni.yml']
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Build the currently published pins without publication
+        type: boolean
+        default: true
+      publish:
+        description: Request publication (still requires protected environment approval)
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: upstream-android-jni
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    outputs:
+      matrix: ${{ steps.select.outputs.matrix }}
+      changed: ${{ steps.select.outputs.changed }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - run: python3 -m unittest discover -s tooling/core-ci -p 'test_*.py' -v
+      - id: select
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PINNED: ${{ github.event_name == 'push' || inputs.dry_run || false }}
+        run: |
+          if [ "$PINNED" = true ]; then
+            python3 tooling/core-ci/pipeline.py select --pinned
+          else
+            python3 tooling/core-ci/pipeline.py select
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: selection
+          path: |
+            selection.json
+            mihomo.json
+            xray-last.json
+          if-no-files-found: error
+  build:
+    needs: check
+    if: needs.check.outputs.changed == 'true'
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.check.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: selection
+          path: selection
+      - uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0
+        with:
+          go-version: '1.26.7'
+          cache: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: NDK and smoke SDK
+        run: sdkmanager 'ndk;27.1.12297006' 'platforms;android-35' 'build-tools;35.0.0' >/dev/null
+      - name: Clean source, host functional tests, all four JNI ABIs
+        env:
+          CORE: ${{ matrix.core }}
+        run: |
+          python3 tooling/core-ci/pipeline.py build --core "$CORE" \
+            --metadata "selection/$CORE.json" --wrappers tooling \
+            --work "$RUNNER_TEMP/build-$CORE" --output "artifacts/$CORE" \
+            --ndk "$ANDROID_HOME/ndk/27.1.12297006"
+      - name: Enable emulator KVM
+        run: |
+          sudo chmod 666 /dev/kvm
+      - name: Android JNI proxy, FD ownership and real TUN smoke
+        uses: reactivecircus/android-emulator-runner@324029e2f414c084d8b15ba075288885e74aef9c
+        env:
+          ANDROID_NDK_HOME: ${{ env.ANDROID_HOME }}/ndk/27.1.12297006
+          CORE: ${{ matrix.core }}
+        with:
+          api-level: 35
+          arch: x86_64
+          target: default
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: |
+            library=$(python3 -c 'import json,os; c=os.environ["CORE"]; print("artifacts/"+c+"/"+json.load(open("artifacts/"+c+"/manifest.json"))["cores"][c]["files"]["x86_64"]["path"])')
+            version=$(python3 -c 'import json,os; print(json.load(open("selection/"+os.environ["CORE"]+".json"))["version"])')
+            ANDROID_NDK_HOME="$ANDROID_HOME/ndk/27.1.12297006" bash tooling/core-ci/android-smoke.sh "$CORE" "$library" "$version"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: jni-${{ matrix.core }}
+          path: artifacts/${{ matrix.core }}
+          if-no-files-found: error
+          retention-days: 30
+  approval-preflight:
+    needs: [check, build]
+    if: needs.check.outputs.changed == 'true' && (github.event_name == 'schedule' || (inputs.publish && !inputs.dry_run))
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Fail closed unless required-reviewer environment exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tooling/core-ci/pipeline.py gate --repo "$GITHUB_REPOSITORY"
+  publish:
+    needs: [check, build, approval-preflight]
+    if: needs.approval-preflight.result == 'success'
+    runs-on: ubuntu-24.04
+    environment: core-production
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Recheck environment after approval
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tooling/core-ci/pipeline.py gate --repo "$GITHUB_REPOSITORY"
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: selection
+          path: selection
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: jni-*
+          path: downloads
+      - name: Merge on latest main; reject stale pins; never overwrite artifacts
+        run: |
+          git fetch origin main
+          git checkout --detach origin/main
+          mkdir artifacts
+          for dir in downloads/jni-*; do mv "$dir" "artifacts/${dir##*jni-}"; done
+          python3 tooling/core-ci/pipeline.py merge --root . --output artifacts --selection selection/selection.json
+          git config user.name GhostCloud
+          git config user.email ghostcloud@example.local
+          git add manifest.json cores
+          git commit -m 'Publish validated upstream Android JNI builds'
+      - name: Push without force and verify remote commit and bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          git push origin HEAD:main
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 tooling/core-ci/pipeline.py readback --root . --selection selection/selection.json --repo "$GITHUB_REPOSITORY"
