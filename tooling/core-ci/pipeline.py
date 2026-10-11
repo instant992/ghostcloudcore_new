@@ -60,6 +60,23 @@ def patch_tun(text):
     return text.replace(NEEDLE, REPLACEMENT)
 
 
+def patch_gvisor_dispatchers(text):
+    """Close dispatcher-owned stop eventfds after readers/processors exit.
+
+    Attach(nil) stops and joins dispatchLoop, which invokes release exactly
+    once. The data FD is owned by sing-tun and must NOT be closed here.
+    """
+    needles = (
+        'func (d *readVDispatcher) release() {\n\td.buf.release()\n\td.mgr.close()\n}',
+        'func (d *recvMMsgDispatcher) release() {\n\tfor _, iov := range d.bufs {\n\t\tiov.release()\n\t}\n\td.mgr.close()\n}',
+    )
+    if any(text.count(needle) != 1 for needle in needles) or 'unix.Close(d.EFD)' in text:
+        raise RuntimeError('Unsupported gVisor stopfd ownership; manual review required')
+    for needle in needles:
+        text = text.replace(needle, needle.replace('release() {\n', 'release() {\n\tdefer unix.Close(d.EFD)\n', 1))
+    return text
+
+
 def validate_elf(path, abi, core, nm):
     data = path.read_bytes()
     _, _, cls, machine = ABIS[abi]
@@ -134,6 +151,13 @@ def build(core, metadata, wrappers, work, output, ndk, go):
         target.chmod(0o644)
         target.write_text(patch_tun(target.read_text()))
         run(go, 'mod', 'edit', '-replace=github.com/metacubex/sing-tun=' + local.as_posix(), cwd=wrapper)
+        gvisor = json.loads(run(go, 'list', '-m', '-json', 'github.com/metacubex/gvisor', cwd=wrapper))
+        local_gvisor = work / 'gvisor'
+        shutil.copytree(gvisor['Dir'], local_gvisor)
+        dispatchers = local_gvisor / 'pkg/tcpip/link/fdbased/packet_dispatchers.go'
+        dispatchers.chmod(0o644)
+        dispatchers.write_text(patch_gvisor_dispatchers(dispatchers.read_text()))
+        run(go, 'mod', 'edit', '-replace=github.com/metacubex/gvisor=' + local_gvisor.as_posix(), cwd=wrapper)
         run(go, 'mod', 'tidy', cwd=wrapper)
     run(go, 'mod', 'verify', cwd=wrapper)
     host_env = dict(os.environ, CGO_ENABLED='0' if os.name == 'nt' else '1')

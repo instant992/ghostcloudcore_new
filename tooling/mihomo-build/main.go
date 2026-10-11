@@ -23,8 +23,9 @@ func initCore(home string) error {
  return nil
 }
 
-// fd is BORROWED: sing-tun's externally supplied descriptor remains owned by
-// VpnService. No syscall.Close or Java dup/detach is required for Mihomo.
+// fd is BORROWED from VpnService: the CI sing-tun patch owns a duplicate
+// and NativeTun.Close closes only that duplicate. gVisor dispatcher release
+// also closes its owned stop eventfd before Attach(nil) finishes joining.
 func startCore(text string, fd int) error {
  lock.Lock(); defer lock.Unlock()
  stopLocked()
