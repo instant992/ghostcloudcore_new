@@ -77,6 +77,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3
       - name: NDK and smoke SDK
         run: sdkmanager 'ndk;27.1.12297006' 'platforms;android-35' 'build-tools;35.0.0' >/dev/null
       - name: Clean source, host functional tests, all four JNI ABIs

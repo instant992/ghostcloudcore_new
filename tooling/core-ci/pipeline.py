@@ -136,7 +136,7 @@ def build(core, metadata, wrappers, work, output, ndk, go):
         run(go, 'mod', 'edit', '-replace=github.com/metacubex/sing-tun=' + local.as_posix(), cwd=wrapper)
         run(go, 'mod', 'tidy', cwd=wrapper)
     run(go, 'mod', 'verify', cwd=wrapper)
-    host_env = dict(os.environ, CGO_ENABLED='1')
+    host_env = dict(os.environ, CGO_ENABLED='0' if os.name == 'nt' else '1')
     # Xray JNI contains Android/POSIX FD calls; host tests import the same
     # upstream runtime without compiling Android JNI glue on the host.
     targets = ['main.go', 'main_test.go'] if core == 'xray-last' else ['./...']
