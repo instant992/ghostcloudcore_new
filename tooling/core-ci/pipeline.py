@@ -183,7 +183,7 @@ def build(core, metadata, wrappers, work, output, ndk, go):
             flags += ' -X github.com/metacubex/mihomo/constant.Version=' + info['tag']
         # The Android smoke and app request the gVisor TUN stack. Without this
         # tag sing-tun compiles its ErrGVisorNotIncluded stub instead.
-        tags = ['-tags=with_gvisor'] if core == 'mihomo' else []
+        tags = ['-tags=with_gvisor,cmfa'] if core == 'mihomo' else []
         print(run(go, 'build', '-p=4', *tags, '-buildmode=c-shared', '-trimpath', '-buildvcs=false', '-ldflags=' + flags, '-o', str(path), '.', cwd=wrapper, env=env), flush=True)
         files[abi] = dict(path=path.relative_to(output).as_posix(), **validate_elf(path, abi, core, prebuilt / ('llvm-nm' + suffix)))
         path.with_suffix('.h').unlink(missing_ok=True)
