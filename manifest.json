@@ -2,63 +2,68 @@
   "schema": 1,
   "cores": {
     "xray-last": {
-  "version": "26.10.10",
-  "upstream": "XTLS/Xray-core",
-  "tag": "v26.10.10",
-  "commit": "701af60772cda123492f86e383e1fdba066614a9",
-  "prerelease": true,
-  "files": {
-    "arm64-v8a": {
-      "path": "cores/xray-last-v26.10.10/arm64-v8a/libxraylast.so",
-      "sha256": "fdc4f1d08fe43e89f80e949ac2a7ede4c80c8177be4f8aecf75db300bb3c6214",
-      "size": 37189144
+      "version": "26.10.10",
+      "upstream": "XTLS/Xray-core",
+      "tag": "v26.10.10",
+      "commit": "701af60772cda123492f86e383e1fdba066614a9",
+      "prerelease": true,
+      "files": {
+        "arm64-v8a": {
+          "path": "cores/xray-last-v26.10.10/arm64-v8a/libxraylast.so",
+          "sha256": "fdc4f1d08fe43e89f80e949ac2a7ede4c80c8177be4f8aecf75db300bb3c6214",
+          "size": 37189144
+        },
+        "armeabi-v7a": {
+          "path": "cores/xray-last-v26.10.10/armeabi-v7a/libxraylast.so",
+          "sha256": "4b136f281782e0241bf14a3506a7d9a1166734a11e0740d3b227159fb7c3a521",
+          "size": 36047160
+        },
+        "x86": {
+          "path": "cores/xray-last-v26.10.10/x86/libxraylast.so",
+          "sha256": "bf7757683cd0f762bc12dc277eca137e839bbf165fc14fcf671e0538f960c0c0",
+          "size": 36065184
+        },
+        "x86_64": {
+          "path": "cores/xray-last-v26.10.10/x86_64/libxraylast.so",
+          "sha256": "df502341e1a060ede5695c8ffe88633124a884a35f12093cef5313e1add20b55",
+          "size": 39680696
+        }
+      }
     },
-    "armeabi-v7a": {
-      "path": "cores/xray-last-v26.10.10/armeabi-v7a/libxraylast.so",
-      "sha256": "4b136f281782e0241bf14a3506a7d9a1166734a11e0740d3b227159fb7c3a521",
-      "size": 36047160
-    },
-    "x86": {
-      "path": "cores/xray-last-v26.10.10/x86/libxraylast.so",
-      "sha256": "bf7757683cd0f762bc12dc277eca137e839bbf165fc14fcf671e0538f960c0c0",
-      "size": 36065184
-    },
-    "x86_64": {
-      "path": "cores/xray-last-v26.10.10/x86_64/libxraylast.so",
-      "sha256": "df502341e1a060ede5695c8ffe88633124a884a35f12093cef5313e1add20b55",
-      "size": 39680696
-    }
-  }
-},
     "mihomo": {
-  "version": "1.19.32",
-  "upstream": "MetaCubeX/mihomo",
-  "tag": "v1.19.32",
-  "commit": "88dcbf7f1614a67c3b36b848ee3592dfa92ada36",
-  "prerelease": false,
-  "files": {
-    "arm64-v8a": {
-      "path": "cores/mihomo-v1.19.32/arm64-v8a/libclash.so",
-      "sha256": "bb53cbd15f17c10cb22a7ef92369249a81a11b75358ec2aacbb50fb3b74e84f7",
-      "size": 57717584
+      "version": "1.19.32",
+      "upstream": "MetaCubeX/mihomo",
+      "tag": "v1.19.32",
+      "commit": "88dcbf7f1614a67c3b36b848ee3592dfa92ada36",
+      "prerelease": false,
+      "files": {
+        "arm64-v8a": {
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-38296044511-1/arm64-v8a/libclash.so",
+          "sha256": "6e03d571661061cb1e223712ffcadd99e4e8079354298545cd96e4372c1785b7",
+          "size": 63121648
+        },
+        "armeabi-v7a": {
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-38296044511-1/armeabi-v7a/libclash.so",
+          "sha256": "4e9287f77f4237476c22229b0a9ff0ba1d5427837db94411588d07494bc4c5aa",
+          "size": 58609308
+        },
+        "x86": {
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-38296044511-1/x86/libclash.so",
+          "sha256": "f7a1635711de5964e3ef0fd12de5109f9aa63bbd0dfd7b2be9a1300686f55829",
+          "size": 59539088
+        },
+        "x86_64": {
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-38296044511-1/x86_64/libclash.so",
+          "sha256": "54eeaeb4ddd3479ae5603df9ef07c01ea1a18174f53d4da5a88b48b62cba2e88",
+          "size": 67773840
+        }
+      },
+      "build": {
+        "run_id": "38296044511",
+        "go": "go version go1.26.7 linux/amd64",
+        "ndk": "Pkg.Desc = Android NDK\nPkg.Revision = 27.1.12297006\nPkg.BaseRevision = 27.1.12297006\nPkg.ReleaseName = r27b\n"
+      }
     },
-    "armeabi-v7a": {
-      "path": "cores/mihomo-v1.19.32/armeabi-v7a/libclash.so",
-      "sha256": "a3077f5287e8271391407f2c14e86861df70bc5dc45a49788244839be72e6747",
-      "size": 54213140
-    },
-    "x86": {
-      "path": "cores/mihomo-v1.19.32/x86/libclash.so",
-      "sha256": "6ce5f85498bc67fbd6b3c50c16eeca6d5c8019bba1b4f1809c4debd95dc4aefd",
-      "size": 54612940
-    },
-    "x86_64": {
-      "path": "cores/mihomo-v1.19.32/x86_64/libclash.so",
-      "sha256": "69df3ae168e55b7e23e5537de3c15fd154c170fda603a304c200410d1ae5270c",
-      "size": 62199728
-    }
-  }
-},
     "sing-box": {
       "version": "3",
       "files": {
