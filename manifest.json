@@ -38,24 +38,24 @@
       "prerelease": false,
       "files": {
         "arm64-v8a": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-1/arm64-v8a/libclash.so",
-          "sha256": "23fddc9f711dbe93e5b900567d0a2ba64a57be7c8ef57dda96a16d011af73777",
-          "size": 63123504
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-2/arm64-v8a/libclash.so",
+          "size": 63128144,
+          "sha256": "e8003aeec2b57218b64b48901ea10969a7e70f5254f64df76e1e905295d9c0bb"
         },
         "armeabi-v7a": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-1/armeabi-v7a/libclash.so",
-          "sha256": "ffe23f6b0d0f6a5dbe8b3ab29b6a11779f0b31b24b210b9d6494cff515a4a2fd",
-          "size": 58611564
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-2/armeabi-v7a/libclash.so",
+          "size": 58615628,
+          "sha256": "605330ba9100a4e3a815c2ec1858b1cf8989a77743149a054f411424ecf40df9"
         },
         "x86": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-1/x86/libclash.so",
-          "sha256": "b8dada28afa7427531172831385015b11d891655992b61633c973460b1d17aab",
-          "size": 59541196
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-2/x86/libclash.so",
+          "size": 59545388,
+          "sha256": "b26daa0d0235704c9ecbfc87fc6bacf9cb4b1f606f15c7b6a01e6724116daa0d"
         },
         "x86_64": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-1/x86_64/libclash.so",
-          "sha256": "fddecadd41fbab318a092dc22e8625c103b8e13213678213209d22b1a7180367",
-          "size": 67775792
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-2/x86_64/libclash.so",
+          "size": 67780592,
+          "sha256": "4d986d1b6b2819b739838c85fa71f9472811ff6002c67eeca62aec64626f2694"
         }
       },
       "build": {
