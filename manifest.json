@@ -38,29 +38,29 @@
       "prerelease": false,
       "files": {
         "arm64-v8a": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-38296044511-1/arm64-v8a/libclash.so",
-          "sha256": "6e03d571661061cb1e223712ffcadd99e4e8079354298545cd96e4372c1785b7",
-          "size": 63121648
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-local-1/arm64-v8a/libclash.so",
+          "sha256": "23fddc9f711dbe93e5b900567d0a2ba64a57be7c8ef57dda96a16d011af73777",
+          "size": 63123504
         },
         "armeabi-v7a": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-38296044511-1/armeabi-v7a/libclash.so",
-          "sha256": "4e9287f77f4237476c22229b0a9ff0ba1d5427837db94411588d07494bc4c5aa",
-          "size": 58609308
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-local-1/armeabi-v7a/libclash.so",
+          "sha256": "ffe23f6b0d0f6a5dbe8b3ab29b6a11779f0b31b24b210b9d6494cff515a4a2fd",
+          "size": 58611564
         },
         "x86": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-38296044511-1/x86/libclash.so",
-          "sha256": "f7a1635711de5964e3ef0fd12de5109f9aa63bbd0dfd7b2be9a1300686f55829",
-          "size": 59539088
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-local-1/x86/libclash.so",
+          "sha256": "b8dada28afa7427531172831385015b11d891655992b61633c973460b1d17aab",
+          "size": 59541196
         },
         "x86_64": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-38296044511-1/x86_64/libclash.so",
-          "sha256": "54eeaeb4ddd3479ae5603df9ef07c01ea1a18174f53d4da5a88b48b62cba2e88",
-          "size": 67773840
+          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-local-1/x86_64/libclash.so",
+          "sha256": "fddecadd41fbab318a092dc22e8625c103b8e13213678213209d22b1a7180367",
+          "size": 67775792
         }
       },
       "build": {
-        "run_id": "38296044511",
-        "go": "go version go1.26.7 linux/amd64",
+        "run_id": null,
+        "go": "go version go1.26.7 windows/amd64",
         "ndk": "Pkg.Desc = Android NDK\nPkg.Revision = 27.1.12297006\nPkg.BaseRevision = 27.1.12297006\nPkg.ReleaseName = r27b\n"
       }
     },
