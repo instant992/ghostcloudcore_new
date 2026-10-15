@@ -30,40 +30,6 @@
         }
       }
     },
-    "mihomo": {
-      "version": "1.19.32",
-      "upstream": "MetaCubeX/mihomo",
-      "tag": "v1.19.32",
-      "commit": "88dcbf7f1614a67c3b36b848ee3592dfa92ada36",
-      "prerelease": false,
-      "files": {
-        "arm64-v8a": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-2/arm64-v8a/libclash.so",
-          "size": 63128144,
-          "sha256": "e8003aeec2b57218b64b48901ea10969a7e70f5254f64df76e1e905295d9c0bb"
-        },
-        "armeabi-v7a": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-2/armeabi-v7a/libclash.so",
-          "size": 58615628,
-          "sha256": "605330ba9100a4e3a815c2ec1858b1cf8989a77743149a054f411424ecf40df9"
-        },
-        "x86": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-2/x86/libclash.so",
-          "size": 59545388,
-          "sha256": "b26daa0d0235704c9ecbfc87fc6bacf9cb4b1f606f15c7b6a01e6724116daa0d"
-        },
-        "x86_64": {
-          "path": "cores/mihomo-v1.19.32-88dcbf7f1614-0-2/x86_64/libclash.so",
-          "size": 67780592,
-          "sha256": "4d986d1b6b2819b739838c85fa71f9472811ff6002c67eeca62aec64626f2694"
-        }
-      },
-      "build": {
-        "run_id": null,
-        "go": "go version go1.26.7 windows/amd64",
-        "ndk": "Pkg.Desc = Android NDK\nPkg.Revision = 27.1.12297006\nPkg.BaseRevision = 27.1.12297006\nPkg.ReleaseName = r27b\n"
-      }
-    },
     "sing-box": {
       "version": "3",
       "files": {
@@ -112,6 +78,40 @@
           "size": 34312536,
           "sha256": "50b096cb48e9c7e03834664a69ba3a744853a980449c38049a92c6d086747524"
         }
+      }
+    },
+    "xray-joly": {
+      "version": "26.10.13-2347",
+      "upstream": "Jolymmiles/Xray-core",
+      "tag": "v26.10.13-2347",
+      "commit": "4ab04d0d4c0c322fc9be99455d6d0c804764dd86",
+      "prerelease": false,
+      "files": {
+        "arm64-v8a": {
+          "path": "cores/xray-joly-v26.10.13-2347-4ab04d0d4c0c-0-1/arm64-v8a/libxrayjoly.so",
+          "sha256": "4e65d28f3688354aab83c7b34a766fe58586d66c70beeac1d97a0023fbb3e784",
+          "size": 38541304
+        },
+        "armeabi-v7a": {
+          "path": "cores/xray-joly-v26.10.13-2347-4ab04d0d4c0c-0-1/armeabi-v7a/libxrayjoly.so",
+          "sha256": "14935cb764a3171e1611866ed64c177a44c875af8778ef804d71b7ccb961895c",
+          "size": 37293624
+        },
+        "x86": {
+          "path": "cores/xray-joly-v26.10.13-2347-4ab04d0d4c0c-0-1/x86/libxrayjoly.so",
+          "sha256": "18f01a14570f04d151bd3a8e01276d349d62794eb17e76c0640c656f48e6d641",
+          "size": 37346176
+        },
+        "x86_64": {
+          "path": "cores/xray-joly-v26.10.13-2347-4ab04d0d4c0c-0-1/x86_64/libxrayjoly.so",
+          "sha256": "0511100b8b612d20cfc3f02827b436290e866b741293ff20b9ce4cdd628c58af",
+          "size": 41093880
+        }
+      },
+      "build": {
+        "run_id": null,
+        "go": "go version go1.26.7 windows/amd64",
+        "ndk": "Pkg.Desc = Android NDK\nPkg.Revision = 27.1.12297006\nPkg.BaseRevision = 27.1.12297006\nPkg.ReleaseName = r27b\n"
       }
     }
   }
